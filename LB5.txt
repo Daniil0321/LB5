@@ -1,0 +1,82 @@
+public class TV
+{
+    public string Brand;
+    public string Model;
+    public double ScreenSize;
+    public bool IsSmartTV;
+    public int Channels;
+    public string DisplayType;
+    public double Price;
+
+    public double PricePerInch
+    {
+        get
+        {
+            return Price / ScreenSize;
+        }
+    }
+}
+
+class Program
+{
+    static void Main(string[] args)
+    {
+        // 1) Ввести кількість об'єктів для масиву cntTVs
+        Console.Write("Введіть кількість телевізорів: ");
+        int cntTVs = int.Parse(Console.ReadLine());
+
+        // 2) Оголосити і створити масив arrTVs
+        TV[] arrTVs = new TV[cntTVs];
+
+        // 3) У циклі ввести дані для всіх телевізорів масиву, задавши значення всіх полів
+        for (int i = 0; i < cntTVs; i++)
+        {
+            Console.Write("Введіть бренд: ");
+            string brand = Console.ReadLine();
+            Console.Write("Введіть модель: ");
+            string model = Console.ReadLine();
+            Console.Write("Введіть розмір екрану (дюймів): ");
+            double screenSize = double.Parse(Console.ReadLine());
+            Console.Write("Чи є це смарт-телевізор? (y-так, n-ні): ");
+            bool isSmartTV = Console.ReadKey().Key == ConsoleKey.Y;
+            Console.WriteLine();
+            Console.Write("Введіть кількість каналів: ");
+            int channels = int.Parse(Console.ReadLine());
+            Console.Write("Введіть тип дисплею: ");
+            string displayType = Console.ReadLine();
+            Console.Write("Введіть ціну: ");
+            double price = double.Parse(Console.ReadLine());
+            Console.WriteLine();
+
+            TV theTV = new TV();
+            theTV.Brand = brand;
+            theTV.Model = model;
+            theTV.ScreenSize = screenSize;
+            theTV.IsSmartTV = isSmartTV;
+            theTV.Channels = channels;
+            theTV.DisplayType = displayType;
+            theTV.Price = price;
+
+            arrTVs[i] = theTV;
+        }
+
+        // 4) У циклі вивести дані всіх об'єктів масиву на екран
+        foreach (TV tv in arrTVs)
+        {
+            Console.WriteLine();
+            Console.WriteLine(" ");
+            Console.WriteLine("Дані про телевізор:");
+            Console.WriteLine(" ");
+            Console.WriteLine("Бренд: " + tv.Brand);
+            Console.WriteLine("Модель: " + tv.Model);
+            Console.WriteLine("Розмір екрану: " + tv.ScreenSize + " дюймів");
+            Console.WriteLine("Смарт-телевізор: " + (tv.IsSmartTV ? "Так" : "Ні"));
+            Console.WriteLine("Кількість каналів: " + tv.Channels);
+            Console.WriteLine("Тип дисплею: " + tv.DisplayType);
+            Console.WriteLine("Ціна: " + tv.Price.ToString("0.00"));
+            Console.WriteLine("Ціна за дюйм: " + tv.PricePerInch.ToString("0.00"));
+        }
+
+        Console.ReadKey();
+    }
+}
